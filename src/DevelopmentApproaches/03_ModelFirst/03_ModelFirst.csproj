@@ -43,4 +43,8 @@
     <Folder Include="Properties\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ConnectionStrings\ConnectionStrings.csproj" />
+  </ItemGroup>
+
 </Project>

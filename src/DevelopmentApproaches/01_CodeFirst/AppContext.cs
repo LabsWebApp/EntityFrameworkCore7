@@ -1,18 +1,18 @@
 ﻿using CodeFirst.Entities;
 using Microsoft.EntityFrameworkCore;
+using static ConnectionStrings.ConnectionStrings;
 
 namespace CodeFirst;
 
-public class AppContext : DbContext
+public sealed class AppContext : DbContext
 {
+    private readonly string Cs = GetConnectionStrings();
+
     public DbSet<User> Users => Set<User>(); // = null!;
     
-   // public AppContext() => Database.EnsureCreated();
+    public AppContext() => Database.EnsureCreated();
 
-    protected override void OnConfiguring(
-        DbContextOptionsBuilder optionsBuilder) => 
-        optionsBuilder.UseSqlite(
-            @"Data Source=C:\Data\Ef7\data.db");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlite(Cs);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
